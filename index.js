@@ -30,7 +30,7 @@ client.connect(err => {
     app.get('/cakes', (req, res) => {
         cakesCollection.find({})
             .toArray((err, cakes) => {
-                res.send(cakes);
+                res.send("cakes");
             })
     })
     app.post('/addCake', (req, res) => {
