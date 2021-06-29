@@ -8,8 +8,8 @@ const { MongoClient } = require('mongodb');
 const ObjectId = require('mongodb').ObjectID;
 const uri = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@cluster0.sghan.mongodb.net/${process.env.DB_NAME}?retryWrites=true&w=majority`;
 
-app.use(cors());
 app.use(bodyParser.json());
+app.use(cors());
 
 
 app.get('/', (req, res) => {
@@ -20,7 +20,7 @@ app.get('/', (req, res) => {
 
 const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
 client.connect(err => {
-    const cakesCollection = client.db(process.env.DB_NAME).collection(process.env.DB_COLLECTION);
+    const cakesCollection = client.db(process.env.DB_NAME).collection("items");
     const ordersCollection = client.db(process.env.DB_NAME).collection("orders");
     console.log("Database connected succesfully");
 
