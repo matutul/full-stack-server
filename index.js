@@ -29,7 +29,7 @@ client.connect(err => {
         res.send("Database in connected successfully");
     })
     app.get('/cakes', (req, res) => {
-        cakesCollection.find({})
+        ordersCollection.find({})
             .toArray((err, cakes) => {
                 res.send(cakes);
             })
