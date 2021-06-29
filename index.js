@@ -31,8 +31,11 @@ client.connect(err => {
     app.get('/cakes', (req, res) => {
         ordersCollection.find({})
             .toArray((err, cakes) => {
-                res.send(cakes);
+                res.sendFile(index.html);
             })
+    })
+    app.get('/indexFile', (req, res) => {
+        res.sendFile(index.html);
     })
     app.post('/addCake', (req, res) => {
         cakesCollection.insertOne(req.body)
