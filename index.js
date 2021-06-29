@@ -9,6 +9,7 @@ const ObjectId = require('mongodb').ObjectID;
 const uri = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@cluster0.sghan.mongodb.net/${process.env.DB_NAME}?retryWrites=true&w=majority`;
 
 app.use(bodyParser.json());
+app.use(express.json());
 app.use(cors());
 
 
