@@ -23,6 +23,10 @@ client.connect(err => {
     const cakesCollection = client.db(process.env.DB_NAME).collection(process.env.DB_COLLECTION);
     const ordersCollection = client.db(process.env.DB_NAME).collection("orders");
     console.log("Database connected succesfully");
+
+    app.get('/check', (req, res) => {
+        res.send("Database in connected successfully");
+    })
     app.get('/cakes', (req, res) => {
         cakesCollection.find({})
             .toArray((err, cakes) => {
