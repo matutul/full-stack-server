@@ -8,7 +8,6 @@ const { MongoClient } = require('mongodb');
 const ObjectId = require('mongodb').ObjectID;
 const uri = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@cluster0.sghan.mongodb.net/${process.env.DB_NAME}?retryWrites=true&w=majority`;
 
-app.use(bodyParser.json());
 app.use(express.json());
 app.use(cors());
 
@@ -21,21 +20,17 @@ app.get('/', (req, res) => {
 
 const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
 client.connect(err => {
+    console.log("Database connection errors: ", err);
+
     const cakesCollection = client.db(process.env.DB_NAME).collection("items");
     const ordersCollection = client.db(process.env.DB_NAME).collection("orders");
     console.log("Database connected succesfully");
 
-    app.get('/check', (req, res) => {
-        res.send("Database in connected successfully");
-    })
     app.get('/cakes', (req, res) => {
         ordersCollection.find({})
             .toArray((err, cakes) => {
                 res.send(cakes);
             })
-    })
-    app.get('/indexFile', (req, res) => {
-        res.sendFile(index.html);
     })
     app.post('/addCake', (req, res) => {
         cakesCollection.insertOne(req.body)
