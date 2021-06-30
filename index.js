@@ -29,7 +29,6 @@ client.connect(err => {
     app.get('/cakes', (req, res) => {
         cakesCollection.find({})
             .toArray((err, cakes) => {
-                console.log("cakes api error: ", err);
                 res.send(cakes);
             })
     })
