@@ -27,8 +27,9 @@ client.connect(err => {
     console.log("Database connected succesfully");
 
     app.get('/cakes', (req, res) => {
-        ordersCollection.find({})
+        cakesCollection.find({})
             .toArray((err, cakes) => {
+                console.log("cakes api error: ", err);
                 res.send(cakes);
             })
     })
